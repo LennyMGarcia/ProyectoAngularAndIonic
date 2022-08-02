@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Consulta de cedula
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="medium">Consulta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div id="container">
+  
+</div>
+<ion-content [fullscreen]="true">
+  <ion-list>
+
+    <ion-item>
+      <p>Digita una cedula para consultar</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Cedula
+      </ion-label>
+      <!-- ngModel permite conectar la variable de js para que funcione dentro de las funciones, keyup funciona
+      cuando se termina de escribir y este evento llama a cambiando que pone como falso las respuestas de ok y error-->
+      <ion-input type="text" (keyup)="cambiando()" [(ngModel)]="cedula"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" (click)="consultar()"  color="success">Consultar</ion-button>
+  <!-- ngIf hace que no se muestre la infomacion hasta que se indique lo contrario
+  los {{}} es para mostar los datos en las etiquetas-->
+  <div *ngIf = "rs_error">
+    <h4 style="color:red">No pudimos encontrar la cedula</h4>
+  </div>
+<ion-list *ngIf="rs_ok">
+  <ion-item>
+      <img src = "{{foto}}" alt=""/>
+  </ion-item>
+
+  <ion-item>
+      <p>{{cedula}}</p>
+  </ion-item>
+
+  <ion-item>
+    <p>{{nombre}}</p>
+</ion-item>
+
+  <ion-item>
+    <p>{{apellido}}</p>
+</ion-item>
+
+<ion-item>
+  <p>{{fecha}}</p>
+</ion-item>
+</ion-list>
+  
+</ion-content>
